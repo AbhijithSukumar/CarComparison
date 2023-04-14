@@ -1,0 +1,27 @@
+<div class="container-fluid bg-image d-flex justify-content-center">
+    <div class="card mt-5" style="width: 25rem;height: 27rem;background-color: hsl(60, 2%, 88%);box-shadow: 8px 8px 10px rgb(9, 10, 10);opacity: 0.85;">
+        <div class="card-title">
+          <h6 class="text-center text-dark mt-2" style="font-weight: bold;">COMPANY LOGIN</h6>
+        </div>
+        <hr class="mt-2 mb-2 bg-dark" style="height: 0.5rem;">
+        <div class="card-body">
+          <div class="container">
+            <form [formGroup]="login" (ngSubmit)="companyLogin(login)">
+              <div class="mb-3">
+                <label for="username" class="form-label text-dark">Username</label>
+                <input formControlName="username"  type="text" class="form-control" id="username" placeholder="Enter username">
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label text-dark">Password</label>
+                <input formControlName="password" type="password" class="form-control" id="password" placeholder="Enter password">
+              </div>
+              <button type="submit" class="btn btn-dark">Submit</button>
+            </form>
+            <a class="nav-link text-center mt-5" routerLink="/companyRegister">not registered? Register here</a>
+          </div>
+          
+        </div>
+        <span class="text-center text-danger mt-2" *ngIf="invalidCompany">Company not registered</span>
+        <span class="text-center text-danger mt-2" *ngIf="invalidPassword">Invalid password</span>
+      </div>
+</div>

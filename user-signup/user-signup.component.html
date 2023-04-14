@@ -1,0 +1,33 @@
+<div class="container-fluid d-flex justify-content-center bg-image">
+    <div class="card mt-5" style="width: 25rem;height: 40rem;background-color: hsl(60, 2%, 88%);box-shadow: 8px 8px 10px rgb(9, 10, 10);opacity: 0.85;">
+        <div class="card-title">
+          <h6 class="text-center text-dark mt-2" style="font-weight: bold;">USER REGISTERATION</h6>
+        </div>
+        <hr class="mt-2 mb-2 bg-dark" style="height: 0.5rem;">
+        <div class="card-body">
+          <div class="container">
+            <form [formGroup]="register" (ngSubmit)="registerUser(register)">
+              <div class="mb-3">
+                <label for="username" class="form-label text-dark">user name</label>
+                <input formControlName="UserName"  type="text" class="form-control" id="username" placeholder="Enter username">
+              </div>
+              <div class="mb-3">
+                <label for="username" class="form-label text-dark">email</label>
+                <input formControlName="Email" type="text" class="form-control" id="username" placeholder="Enter email">
+              </div>
+              <div class="mb-3">
+                <label for="username" class="form-label text-dark">phone</label>
+                <input formControlName="Phone" type="number" class="form-control" id="username" placeholder="Enter number">
+              </div>
+              <div class="mb-3">
+                <label for="username" class="form-label text-dark">password</label>
+                <input formControlName="Password" type="password" class="form-control" id="username" placeholder="Enter password">
+              </div>
+              <button type="submit" class="btn btn-dark">Submit</button>
+            </form>
+            <a class="nav-link text-center mt-5" routerLink="/userLogin" style="cursor: pointer;">already registered? Login here</a>
+          </div>
+          
+        </div>
+      </div>
+</div>

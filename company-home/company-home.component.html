@@ -1,0 +1,162 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(188, 193, 136)">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">COMPANY DASHBOARD</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav" *ngIf="isAdminApproved">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <div class="container d-flex justify-content-center" *ngIf="!isAdminApproved">
+    <img
+      src="https://wordpressprogrammers.com/wp-content/uploads/2019/09/new-admin-email-verification-screen-in-wordpress-5-3.jpg"
+      alt="" class="img-fluid" width="1000rem" height="1000rem">
+  </div>
+  <div class="container d-flex justify-content-center" *ngIf="!isAdminApproved">
+    <span class="mt-4 text-success">Kindly wait for the admin approval<br>Company verification undergoing . This may
+      take some time , please come again after some time.</span>
+  </div>
+  <div class="row" *ngIf="isAdminApproved">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">CAR MODELS</h5>
+          <p class="card-text">{{car_models_count}}</p>
+          <a href="#" (click)="carDetailForm()" class="btn" style="background-color: rgb(188, 193, 136)">View Details</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">USERS VISITED</h5>
+          <p class="card-text">20</p>
+          <a href="#" class="btn" style="background-color: rgb(188, 193, 136)">View Details</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">MANAGE ACCOUNT</h5>
+          <p class="card-text">300</p>
+          <a href="#" class="btn" style="background-color: rgb(188, 193, 136)">Manage</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr style="height: 0.6rem;background: rgb(167, 173, 105);">
+
+<div class="contanier mt-5 d-flex justify-content-center" *ngIf="showCarCreateForm">
+  <div class="card mb-4" style="width: 25rem;">
+    <div class="card-title text-center mt-2">
+      <span style="font-weight: bolder;color: rgb(188, 193, 136);">ADD NEW CAR MODEL</span>
+    </div>
+    <hr style="height: 0.6rem;background: rgb(167, 173, 105);">
+    <div class="card-body">
+      <form [formGroup]="car_form" (ngSubmit)="createCarModel(car_form)" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label class="form-label text-dark">car name</label>
+          <input formControlName="CarName" type="text" class="form-control" id="username" placeholder="Enter car name">
+        </div>
+        <div class="mb-3">
+          <label class="form-label text-dark">manufacturing date</label>
+          <input formControlName="ManDate" type="text" class="form-control" id="ManDate" placeholder="Enter date">
+        </div>
+        <div class="mb-3">
+          <label class="form-label text-dark">mileage</label>
+          <input formControlName="Mileage" type="number" class="form-control" id="Mileage " placeholder="Enter mileage">
+        </div>
+        <div class="mb-3">
+          <label class="form-label text-dark">fuel type</label>
+          <select formControlName="FuelType" class="form-control">
+            <option disabled>Select Website</option>
+            <option *ngFor="let type of fuel_types">{{type}}</option>
+        </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label text-dark">seat capacity</label>
+          <input formControlName="SeatCapacity" type="number" class="form-control" id="username"
+            placeholder="Enter seats">
+        </div>
+        <div class="mb-3">
+          <label class="form-label text-dark">engine capacity</label>
+          <input formControlName="EngineCapacity" type="text" class="form-control" id="username"
+            placeholder="Enter engine capacity">
+        </div>
+        <div class="mb-3">
+          <label class="form-label text-dark">show-room price</label>
+          <input formControlName="ShowRoomPrice" type="number" class="form-control" id="username"
+            placeholder="Enter price">
+        </div>
+        <div class="mb-3">
+          <label class="form-label text-dark">Image</label>
+          <input formControlName="Image" name="Image" type="file" class="form-control" id="username" placeholder="Enter seats" (change)="onFileSelected($event)">
+          <img [src]="imageUrl" *ngIf="imageUrl">
+        </div>
+        <div class="mb-3">
+          <label class="form-label text-dark">on-road price</label>
+          <input formControlName="OnRoadPrice" type="number" class="form-control" id="username"
+            placeholder="Enter seats">
+        </div>
+        <div class="mb-3">
+          <label class="form-label text-dark">colors</label>
+          <ng-multiselect-dropdown [settings]="colors_settings" [data]="colors" formControlName="colors">
+          </ng-multiselect-dropdown>
+        </div>
+        <div class="mb-3">
+          <label class="form-label text-dark">varient</label>
+          <input formControlName="varient" type="text" class="form-control" id="username" placeholder="Enter varient">
+        </div>
+        <button type="submit" class="btn" style="background-color: rgb(188, 193, 136);">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4" *ngIf="showCarModelForm">
+  <button class="btn" (click)="carModelForm()" style="background-color: rgb(188, 193, 136)">Add new car model</button>
+  <a href="#" (click)="cancellCarDetailForm()" class="btn ms-2" style="background-color: rgb(99, 102, 69)">Cancel</a>
+  <hr>
+  <div class="row">
+    <div class="col-md-4 d-flex justify-content-center" *ngFor="let model of car_models_data;">
+      <div class="card">
+        <div class="card-body" style="width: 20rem;">
+          <div class="card-title text-center mt-2">
+            <span style="font-weight: bolder;color: rgb(188, 193, 136);">CAR MODEL DETAILS</span>
+          </div>
+          <hr style="height: 0.6rem;background: rgb(167, 173, 105);">
+          <p class="card-text">CAR NAME:{{model.CarName}}</p>
+          <br>
+          <p class="card-text">MANUFACTURED DATE:{{model.ManDate}}</p>
+          <br>
+          <p class="card-text">MILEAGE:{{model.Mileage}}</p>
+          <br>
+          <p class="card-text">FUEL TYPE:{{model.FuelType}}</p>
+          <br>
+          <p class="card-text">SEAT CAPACITY:{{model.SeatCapacity}}</p>
+          <br>
+          <p class="card-text">ENGINE CAPACITY:{{model.EngineCapacity}}</p>
+          <br>
+          <p class="card-text">SHOW ROOM PRICE:{{model.ShowRoomPrice}}</p>
+          <br>
+          <p class="card-text">ON ROAD PRICE:{{model.OnRoadPrice}}</p>
+          <br>
+          <p class="card-text">AVAILABLE COLORS:{{model.colors}}</p>
+          <br>
+          <p class="card-text">VARIENT:{{model.varient}}</p>
+          <a href="#" class="btn mt-2" style="background-color: rgb(188, 193, 136)">Edit</a>
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="container-fluid d-flex justify-content-center bg-image">
+        <div class="card mt-5" style="width: 25rem;height: 40rem;background-color: hsl(60, 2%, 88%);box-shadow: 8px 8px 10px rgb(9, 10, 10);opacity: 0.85;">
+            <div class="card-title">
+              <h6 class="text-center text-dark mt-2" style="font-weight: bold;">COMPANY REGISTERATION</h6>
+            </div>
+            <hr class="mt-2 mb-2 bg-dark" style="height: 0.5rem;">
+            <div class="card-body">
+              <div class="container">
+                <form [formGroup]="register" (ngSubmit)="registerCompany(register)">
+                  <div class="mb-3">
+                    <label for="username" class="form-label text-dark">company name</label>
+                    <input formControlName="companyName"  type="text" class="form-control" id="username" placeholder="Enter username">
+                  </div>
+                  <div class="mb-3">
+                    <label for="username" class="form-label text-dark">website</label>
+                    <input formControlName="website" type="text" class="form-control" id="username" placeholder="Enter website">
+                  </div>
+                  <div class="mb-3">
+                    <label for="username" class="form-label text-dark">customer care number</label>
+                    <input formControlName="customerCareNo" type="number" class="form-control" id="username" placeholder="Enter number">
+                  </div>
+                  <div class="mb-3">
+                    <label for="password" class="form-label text-dark">company email</label>
+                    <input formControlName="email" type="email" class="form-control" id="password" placeholder="Enter email">
+                  </div>
+                  <div class="mb-3">
+                    <label for="username" class="form-label text-dark">password</label>
+                    <input formControlName="password" type="password" class="form-control" id="username" placeholder="Enter password">
+                  </div>
+                  <button type="submit" class="btn btn-dark">Submit</button>
+                </form>
+                <a class="nav-link text-center mt-5" routerLink="/companyLogin" style="cursor: pointer;">Not registered? Login here</a>
+              </div>
+              
+            </div>
+          </div>
+</div>

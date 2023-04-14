@@ -1,0 +1,74 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(188, 193, 136)">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">ADMIN DASHBOARD</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/company/register" href="#">Companies</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/company/register" href="#">Users</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Settings</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4" *ngIf="approvalClicked">
+    <div class="row" *ngFor="let comp of notApprovedCompanies;">
+        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+            <div class="card mt-2">
+                <div class="card-body">
+                    <p class="text-center text-warning">{{comp.CompanyName}}</p>
+                </div>
+                </div>
+        </div>
+        <div class="col-md-1 mt-2">
+            <button (click)="approveCompany(comp._id)" class="btn btn-success">Approve</button>
+        </div>
+        <div class="col-md-1 mt-2">
+            <button (click)="cancelApproval()" class="btn btn-danger">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5" *ngIf="!approvalClicked">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card" style="height: 10rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Companies</h5>
+                    <p class="card-text">{{companies}}</p>
+                    <a href="#" class="btn" style="background-color: rgb(188, 193, 136)">View Details</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="height: 10rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Users</h5>
+                    <p class="card-text">20</p>
+                    <a href="#" class="btn" style="background-color: rgb(188, 193, 136)">View Details</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="height: 10rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Approvals</h5>
+                    <p class="card-text">{{approvals}}</p>
+                    <a  href="#" class="btn" (click)="showApproval()" style="background-color: rgb(188, 193, 136)">Manage</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
